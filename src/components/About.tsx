@@ -1,34 +1,95 @@
 import Reveal from '@/components/Reveal';
+import { ArrowUpRight, ShieldCheck, Zap, Code2, Users2 } from 'lucide-react';
+import { CALENDLY_URL } from '@/config';
 
-const aboutTiles = ['50+ Agents Built', '30+ ML Pipelines', '200+ Teams Trained', '15h/wk Time Saved'];
+const aboutTiles = [
+    { label: '50+ Agents Built', sub: 'In production across 4 continents' },
+    { label: '30+ ML Pipelines', sub: 'Sub-second real-time inference' },
+    { label: '200+ Engineers Trained', sub: 'Hands-on practical AI mastery' },
+    { label: '15h/wk Saved', sub: 'Per developer in client teams' },
+];
 
 export default function About() {
     return (
-        <section id="about" className="relative section-pad px-6 bg-[#f5ede0] border-t-[2.5px] border-[#12100e]">
+        <section id="about" className="relative py-20 lg:py-28 px-4 sm:px-6 bg-[#f2ede4]/40 border-t border-[rgba(28,20,14,0.08)]">
             <div className="relative max-w-7xl mx-auto">
                 <Reveal>
-                    <div className="bg-white border-[2.5px] border-[#12100e] rounded-[22px] overflow-hidden shadow-[8px_8px_0_0_#12100e] grid md:grid-cols-[1fr_1.45fr]">
-                        <div className="relative h-64 md:h-auto overflow-hidden border-b-[2.5px] md:border-b-0 md:border-r-[2.5px] border-[#12100e] bg-[#12100e]">
-                            <img src="https://images.pexels.com/photos/39492703/pexels-photo-39492703.png?auto=compress&cs=tinysrgb&w=700" alt="Abstract" className="w-full h-full object-cover opacity-90" loading="lazy" width={700} height={467} />
-                            <div className="absolute bottom-3 left-3 bg-[#d4a017] text-[#12100e] border-[1.5px] border-[#12100e] rounded-full px-3 py-1 text-[11px] font-extrabold tracking-[0.08em] uppercase shadow-[2px_2px_0_0_#12100e] rotate-[-1deg]">Since 2026 ✦ Built to last</div>
-                        </div>
-                        <div className="p-8 md:p-10">
-                            <span className="pill bg-[#12100e] text-[#fdf8f0]">About Us</span>
-                            <h2 className="mt-4 font-display font-extrabold text-display-md leading-[0.95] text-[#12100e]">
-                                A consultancy built on <span className="font-serif italic font-normal text-[#e85d2f]">deep expertise</span> — not decks.
-                            </h2>
-                            <p className="mt-3 text-[14px] leading-relaxed text-[#3d332b]">
-                                AI engineers, ML practitioners, and automation folks who ship systems that create operational leverage. From advisory to full autonomous deployment.
-                            </p>
-                            <div className="mt-6 flex flex-wrap gap-2.5">
-                                {aboutTiles.map((tile) => (
-                                    <span key={tile} className="bg-[#fdf8f0] border-[1.5px] border-[#12100e] rounded-full px-3.5 py-2 text-[12px] font-bold tracking-[-0.01em] text-[#12100e] shadow-[3px_3px_0_0_#12100e] rotate-[-0.3deg] even:rotate-[0.4deg]">
-                                        {tile}
-                                    </span>
-                                ))}
+                    <div className="card-refined overflow-hidden grid lg:grid-cols-[1.1fr_1.3fr] bg-white border border-[rgba(28,20,14,0.08)] shadow-[0_16px_36px_-12px_rgba(20,17,15,0.12)]">
+                        {/* Left Visual Editorial Column */}
+                        <div className="relative min-h-[300px] lg:min-h-full bg-[#12100e] text-white p-8 lg:p-10 flex flex-col justify-between overflow-hidden">
+                            <div className="absolute top-0 right-0 w-80 h-80 bg-[#e85d2f]/15 rounded-full blur-3xl pointer-events-none" />
+
+                            <div className="relative z-10">
+                                <div className="text-[11px] font-mono uppercase tracking-widest text-white/50 mb-2">
+                                    Engineering Advisory
+                                </div>
+                                <h3 className="text-[28px] lg:text-[34px] font-extrabold leading-[1.05] tracking-tight text-white">
+                                    Built by engineers <br />
+                                    <span className="headline-accent !text-[#ff8a5c]">who ship code</span>, not slides.
+                                </h3>
                             </div>
-                            <div className="mt-6 flex items-center gap-2 text-[11px] font-mono text-[#6e6259]">
-                                <span className="w-6 h-px bg-[#12100e]/20" /> Hand-written. Hand-shipped.
+
+                            <div className="relative z-10 mt-8 space-y-3">
+                                <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10 text-[13px] text-white/80">
+                                    <Code2 size={16} className="text-[#e85d2f]" />
+                                    <span>Production codebases, direct PRs, zero boilerplate</span>
+                                </div>
+                                <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10 text-[13px] text-white/80">
+                                    <ShieldCheck size={16} className="text-[#22c06e]" />
+                                    <span>Sovereign data isolation & zero model retention</span>
+                                </div>
+                            </div>
+
+                            <div className="relative z-10 pt-6 mt-6 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-white/40">
+                                <span>SINCE 2026</span>
+                                <span>SINGAPORE • GLOBAL REMOTE</span>
+                            </div>
+                        </div>
+
+                        {/* Right Content Column */}
+                        <div className="p-8 lg:p-12 flex flex-col justify-between">
+                            <div>
+                                <div className="eyebrow mb-3">
+                                    <span className="eyebrow-badge">06</span>
+                                    <span>Our Philosophy</span>
+                                </div>
+
+                                <h2 className="text-[clamp(1.8rem,3.2vw,2.6rem)] font-extrabold tracking-tight leading-tight text-[#14110f]">
+                                    A consultancy founded on <span className="headline-accent">high leverage</span> and measurable ROI.
+                                </h2>
+
+                                <p className="mt-4 text-[15px] leading-relaxed text-[#3e3730]">
+                                    We are AI researchers, distributed systems engineers, and automation architects.
+                                    Instead of leaving you with 80-page strategic slide decks, we write code, fine-tune models,
+                                    and deploy working agent swarms directly into your infrastructure.
+                                </p>
+
+                                <div className="mt-8 grid sm:grid-cols-2 gap-3.5">
+                                    {aboutTiles.map((tile) => (
+                                        <div
+                                            key={tile.label}
+                                            className="p-4 rounded-xl bg-[#faf7f2] border border-[rgba(28,20,14,0.06)]"
+                                        >
+                                            <div className="text-[15px] font-bold text-[#14110f]">{tile.label}</div>
+                                            <div className="text-[12px] text-[#70665d] mt-0.5">{tile.sub}</div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="mt-8 pt-6 border-t border-[rgba(28,20,14,0.08)] flex flex-wrap items-center justify-between gap-4">
+                                <span className="text-[12px] font-mono text-[#70665d]">
+                                    Autonomous deployments with SLAs and continuous support.
+                                </span>
+                                <a
+                                    href={CALENDLY_URL}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="link-arrow text-[13.5px] font-bold"
+                                >
+                                    <span>Schedule intro call</span>
+                                    <ArrowUpRight size={14} />
+                                </a>
                             </div>
                         </div>
                     </div>

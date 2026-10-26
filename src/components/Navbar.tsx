@@ -11,6 +11,8 @@ import {
     Puzzle,
     Users,
     GraduationCap,
+    ArrowUpRight,
+    Github,
     type LucideIcon,
 } from 'lucide-react';
 import { CALENDLY_URL } from '@/config';
@@ -31,20 +33,20 @@ const menus: DropdownMenu[] = [
     {
         label: 'Services',
         items: [
-            { icon: Bot, label: 'AI Agents', description: 'Autonomous systems & workflow automation', href: '#services' },
-            { icon: Brain, label: 'AI & ML', description: 'Machine learning advisory services', href: '#services' },
-            { icon: Compass, label: 'Advisory', description: 'Deep learning advisory & strategy', href: '#services' },
+            { icon: Bot, label: 'Autonomous Agents', description: 'Autonomous agent swarms & workflow automation', href: '#services' },
+            { icon: Brain, label: 'AI & ML Systems', description: 'Production-ready ML pipelines and fine-tuning', href: '#services' },
+            { icon: Compass, label: 'Deep Advisory', description: 'Strategic technical guidance and architecture audits', href: '#services' },
         ],
     },
     {
         label: 'Training',
         items: [
-            { icon: MessageSquare, label: 'Prompts', description: 'Prompt engineering mastery', href: '#training' },
-            { icon: FileCode, label: 'Artifacts', description: 'Reusable AI artifact management', href: '#training' },
-            { icon: Puzzle, label: 'Skills', description: 'Domain-specific AI skill development', href: '#training' },
-            { icon: Users, label: 'Collaborative Projects', description: 'Team-based AI workflows', href: '#training' },
-            { icon: Bot, label: 'Agents', description: 'Design & deploy autonomous agents', href: '#training' },
-            { icon: GraduationCap, label: 'Reskilling', description: 'Workforce AI reskilling programs', href: '#training' },
+            { icon: MessageSquare, label: 'Prompts & Chains', description: 'Master contextual prompting and multi-turn workflows', href: '#training' },
+            { icon: FileCode, label: 'Artifacts & Schema', description: 'Versioned prompts, evaluation benches and state trees', href: '#training' },
+            { icon: Puzzle, label: 'Skills & Tools', description: 'Custom agent tools, MCP servers and API synthesis', href: '#training' },
+            { icon: Users, label: 'Collaborative AI', description: 'Human-in-the-loop pairing and team acceleration', href: '#training' },
+            { icon: Bot, label: 'Autonomous Agents', description: 'State-machine agents with tool use and self-correction', href: '#training' },
+            { icon: GraduationCap, label: 'Reskilling', description: 'Transform traditional engineering teams into AI natives', href: '#training' },
         ],
     },
 ];
@@ -60,37 +62,37 @@ export default function Navbar() {
     const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 18);
+        const onScroll = () => setScrolled(window.scrollY > 20);
         onScroll();
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
     return (
-        <header
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-                scrolled
-                    ? 'py-2.5 bg-[#fdf8f0]/95 border-b-[2.5px] border-[#12100e]'
-                    : 'py-4 bg-[#fdf8f0] border-b border-[#12100e]/10'
-            }`}
-            onMouseLeave={() => setOpenDropdown(null)}
-        >
-            <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-                {/* Logo — stamp style */}
-                <a href="#" className="flex items-center gap-2.5 group">
-                    <div className="w-9 h-9 rounded-[10px] bg-[#12100e] flex items-center justify-center border-[1.5px] border-[#12100e] group-hover:rotate-[-4deg] transition-transform duration-300">
-                        <span className="font-display text-[#fdf8f0] text-[20px] font-bold leading-none tracking-tighter">N</span>
-                    </div>
-                    <span className="text-[16px] font-extrabold tracking-[-0.03em] text-[#12100e]">
-                        Nexora<span className="font-medium text-[#e85d2f]">.ai</span>
-                    </span>
-                    <span className="hidden sm:inline-flex ml-1 text-[10px] font-bold tracking-[0.12em] uppercase bg-[#d4a017] text-[#12100e] px-2 py-0.5 rounded-full border border-[#12100e] rotate-[-1deg]">
-                        est. 2026
-                    </span>
-                </a>
+        <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-3 pointer-events-none transition-all duration-300">
+            {/* 3-Column Centered Nav Bar (Antideploy Architecture) */}
+            <div
+                className={`pointer-events-auto mx-auto grid grid-cols-2 md:grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 sm:px-6 h-[58px] rounded-full transition-all duration-500 ${
+                    scrolled
+                        ? 'max-w-6xl bg-[#faf7f2]/88 backdrop-blur-xl border border-[rgba(28,20,14,0.08)] shadow-[0_1px_2px_rgba(20,17,15,0.05),0_14px_34px_-16px_rgba(20,17,15,0.18)]'
+                        : 'max-w-7xl bg-transparent border border-transparent'
+                }`}
+                onMouseLeave={() => setOpenDropdown(null)}
+            >
+                {/* Column 1: Brand */}
+                <div className="flex items-center justify-start">
+                    <a href="#top" className="flex items-center gap-2.5 group text-decoration-none">
+                        <div className="w-8 h-8 rounded-lg bg-[#14110f] flex items-center justify-center border border-[#14110f] shadow-sm group-hover:rotate-[-3deg] transition-transform duration-300">
+                            <span className="font-serif text-[#faf7f2] text-[18px] italic leading-none font-medium">B</span>
+                        </div>
+                        <span className="text-[16px] font-bold tracking-tight text-[#14110f]">
+                            Brainorth<span className="font-serif italic font-normal text-[#e85d2f]">.ai</span>
+                        </span>
+                    </a>
+                </div>
 
-                {/* Desktop nav */}
-                <div className="hidden md:flex items-center gap-1">
+                {/* Column 2: Centered Links */}
+                <nav className="hidden md:flex items-center justify-center gap-1.5" aria-label="Main Navigation">
                     {menus.map((menu) => (
                         <div
                             key={menu.label}
@@ -98,37 +100,40 @@ export default function Navbar() {
                             onMouseEnter={() => setOpenDropdown(menu.label)}
                         >
                             <button
-                                className={`flex items-center gap-1 px-3.5 py-2 text-[13px] font-bold tracking-[-0.01em] rounded-full border transition-all duration-200 ${
+                                type="button"
+                                onClick={() => setOpenDropdown(openDropdown === menu.label ? null : menu.label)}
+                                className={`flex items-center gap-1 px-3.5 py-1.5 text-[13.5px] font-medium tracking-tight rounded-full transition-all duration-200 ${
                                     openDropdown === menu.label
-                                        ? 'bg-[#12100e] text-[#fdf8f0] border-[#12100e]'
-                                        : 'text-[#12100e] border-transparent hover:border-[#12100e] hover:bg-white'
+                                        ? 'bg-[#14110f] text-[#faf7f2]'
+                                        : 'text-[#3e3730] hover:text-[#14110f] hover:bg-[#14110f]/5'
                                 }`}
                             >
                                 {menu.label}
                                 <ChevronDown
-                                    size={13}
+                                    size={12}
                                     className={`transition-transform duration-200 ${openDropdown === menu.label ? 'rotate-180' : ''}`}
                                 />
                             </button>
 
+                            {/* Dropdown Menu Panel */}
                             {openDropdown === menu.label && (
-                                <div className="absolute top-full left-0 pt-3 w-[352px] animate-dropdown">
-                                    <div className="bg-[#fffcf5] border-[2.5px] border-[#12100e] shadow-[6px_6px_0_0_#12100e] rounded-[18px] p-3">
+                                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2.5 w-[360px] animate-fade-in">
+                                    <div className="bg-white/95 backdrop-blur-xl border border-[rgba(28,20,14,0.08)] shadow-[0_16px_40px_-12px_rgba(20,17,15,0.18)] rounded-2xl p-2.5 space-y-1">
                                         {menu.items.map((item) => (
                                             <a
                                                 key={item.label}
                                                 href={item.href}
                                                 onClick={() => setOpenDropdown(null)}
-                                                className="flex items-start gap-3 p-3 rounded-[14px] hover:bg-[#fdf8f0] border border-transparent hover:border-[#12100e]/10 transition-colors group"
+                                                className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#faf7f2] transition-colors group"
                                             >
-                                                <div className="w-10 h-10 rounded-xl bg-[#12100e] flex items-center justify-center text-white group-hover:bg-[#e85d2f] transition-colors flex-shrink-0">
-                                                    <item.icon size={17} strokeWidth={1.7} />
+                                                <div className="w-8 h-8 rounded-lg bg-[#faf7f2] border border-[rgba(28,20,14,0.06)] flex items-center justify-center text-[#70665d] group-hover:text-[#e85d2f] group-hover:bg-[#e85d2f]/10 transition-colors flex-shrink-0">
+                                                    <item.icon size={16} />
                                                 </div>
-                                                <div className="min-w-0">
-                                                    <div className="text-[13px] font-bold tracking-[-0.01em] text-[#12100e]">
+                                                <div>
+                                                    <div className="text-[13px] font-semibold text-[#14110f] group-hover:text-[#e85d2f] transition-colors">
                                                         {item.label}
                                                     </div>
-                                                    <div className="text-[12px] text-[#6e6259] leading-snug mt-0.5">
+                                                    <div className="text-[11.5px] text-[#70665d] leading-snug mt-0.5">
                                                         {item.description}
                                                     </div>
                                                 </div>
@@ -142,77 +147,100 @@ export default function Navbar() {
 
                     {simpleLinks.map((link) => (
                         <a
-                            key={link.href}
+                            key={link.label}
                             href={link.href}
-                            className="px-3.5 py-2 text-[13px] font-bold tracking-[-0.01em] text-[#12100e] rounded-full border border-transparent hover:border-[#12100e] hover:bg-white transition-all duration-200"
+                            className="px-3.5 py-1.5 text-[13.5px] font-medium tracking-tight text-[#3e3730] hover:text-[#14110f] hover:bg-[#14110f]/5 rounded-full transition-colors"
                         >
                             {link.label}
                         </a>
                     ))}
-                </div>
+                </nav>
 
-                <div className="hidden md:flex items-center gap-3">
+                {/* Column 3: Action Buttons (Antideploy Cluster) */}
+                <div className="flex items-center justify-end gap-3">
+                    <a
+                        href="https://github.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="GitHub"
+                        className="hidden lg:flex w-8 h-8 rounded-lg items-center justify-center text-[#70665d] hover:text-[#14110f] hover:bg-[#14110f]/5 transition-colors"
+                    >
+                        <Github size={17} />
+                    </a>
+
+                    <a
+                        href="#contact"
+                        className="hidden sm:inline-flex text-[13px] font-medium text-[#3e3730] hover:text-[#14110f] px-2 py-1 transition-colors"
+                    >
+                        Contact
+                    </a>
+
                     <a
                         href={CALENDLY_URL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn-primary text-[13px] !py-2.5 !px-5"
+                        className="btn btn--primary btn--sm !text-[12.5px]"
                     >
-                        Book a Call
+                        <span>Start a project</span>
+                        <ArrowUpRight size={13} strokeWidth={2.5} />
                     </a>
+
+                    {/* Mobile Hamburger Button */}
+                    <button
+                        type="button"
+                        onClick={() => setMenuOpen(!menuOpen)}
+                        aria-label="Toggle navigation menu"
+                        className="md:hidden w-9 h-9 rounded-full bg-white border border-[rgba(28,20,14,0.1)] flex items-center justify-center text-[#14110f]"
+                    >
+                        {menuOpen ? <X size={18} /> : <Menu size={18} />}
+                    </button>
                 </div>
+            </div>
 
-                <button
-                    onClick={() => setMenuOpen(!menuOpen)}
-                    className="md:hidden w-10 h-10 rounded-full border-[2px] border-[#12100e] bg-white flex items-center justify-center text-[#12100e] shadow-[3px_3px_0_0_#12100e] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[1px_1px_0_0_#12100e] transition-all"
-                    aria-label="Toggle menu"
-                    aria-expanded={menuOpen}
-                >
-                    {menuOpen ? <X size={16} strokeWidth={2.5} /> : <Menu size={16} strokeWidth={2.5} />}
-                </button>
-            </nav>
-
+            {/* Mobile Drawer */}
             {menuOpen && (
-                <div className="md:hidden mt-3 mx-4 bg-[#fffcf5] border-[2.5px] border-[#12100e] shadow-[6px_6px_0_0_#12100e] rounded-[18px] p-4 animate-fade-in max-h-[78vh] overflow-y-auto">
-                    <div className="flex flex-col gap-1">
+                <div className="md:hidden pointer-events-auto mt-2 max-w-lg mx-auto bg-white/95 backdrop-blur-2xl border border-[rgba(28,20,14,0.1)] rounded-2xl p-5 shadow-2xl animate-fade-in">
+                    <div className="space-y-4">
                         {menus.map((menu) => (
-                            <div key={menu.label} className="mb-1">
-                                <div className="text-[11px] font-extrabold tracking-[0.14em] uppercase text-[#6e6259] px-3 py-2 flex items-center gap-2">
-                                    <span className="w-6 h-px bg-[#12100e]/20" />
+                            <div key={menu.label}>
+                                <div className="text-[11px] font-mono uppercase tracking-wider text-[#70665d] mb-2 font-semibold">
                                     {menu.label}
                                 </div>
-                                {menu.items.map((item) => (
-                                    <a
-                                        key={item.label}
-                                        href={item.href}
-                                        onClick={() => setMenuOpen(false)}
-                                        className="flex items-center gap-3 px-3 py-2.5 text-[13px] font-semibold text-[#12100e] hover:bg-[#12100e] hover:text-white rounded-xl transition-colors"
-                                    >
-                                        <item.icon size={15} className="flex-shrink-0" />
-                                        {item.label}
-                                    </a>
-                                ))}
+                                <div className="space-y-1.5 pl-2">
+                                    {menu.items.map((item) => (
+                                        <a
+                                            key={item.label}
+                                            href={item.href}
+                                            onClick={() => setMenuOpen(false)}
+                                            className="flex items-center gap-2.5 py-1.5 text-[13.5px] font-medium text-[#14110f]"
+                                        >
+                                            <item.icon size={15} className="text-[#e85d2f]" />
+                                            {item.label}
+                                        </a>
+                                    ))}
+                                </div>
                             </div>
                         ))}
-                        {simpleLinks.map((link) => (
+                        <div className="pt-2 border-t border-[rgba(28,20,14,0.06)] flex flex-col gap-2">
+                            {simpleLinks.map((link) => (
+                                <a
+                                    key={link.label}
+                                    href={link.href}
+                                    onClick={() => setMenuOpen(false)}
+                                    className="py-1 text-[13.5px] font-medium text-[#14110f]"
+                                >
+                                    {link.label}
+                                </a>
+                            ))}
                             <a
-                                key={link.href}
-                                href={link.href}
-                                onClick={() => setMenuOpen(false)}
-                                className="px-3 py-2.5 text-[13px] font-semibold text-[#12100e] hover:bg-[#12100e] hover:text-white rounded-xl transition-colors"
+                                href={CALENDLY_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn btn--primary justify-center mt-2"
                             >
-                                {link.label}
+                                Start a project <ArrowUpRight size={15} />
                             </a>
-                        ))}
-                        <a
-                            href={CALENDLY_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => setMenuOpen(false)}
-                            className="mt-3 btn-primary w-full text-center"
-                        >
-                            Book a Call
-                        </a>
+                        </div>
                     </div>
                 </div>
             )}

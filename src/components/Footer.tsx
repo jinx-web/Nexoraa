@@ -1,88 +1,95 @@
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
-import { CONTACT_EMAIL } from '@/config';
+import { Github, Linkedin, Twitter, Mail, ArrowUpRight } from 'lucide-react';
+import { CONTACT_EMAIL, SITE_URL } from '@/config';
 
-type FooterLinkItem = {
-    label: string;
-    href: string;
-};
-
-const footerLinks: Record<string, FooterLinkItem[]> = {
+const footerNav = {
     Services: [
-        { label: 'AI Agents', href: '#services' },
-        { label: 'AI & ML', href: '#services' },
-        { label: 'Advisory', href: '#services' },
+        { label: 'Autonomous Agents', href: '#services' },
+        { label: 'Machine Learning Systems', href: '#services' },
+        { label: 'Deep Advisory & Audits', href: '#services' },
+        { label: 'Sovereign VPC Inference', href: '#services' },
     ],
-    Training: [
-        { label: 'Prompts', href: '#training' },
-        { label: 'Artifacts', href: '#training' },
-        { label: 'Skills', href: '#training' },
-        { label: 'Agents', href: '#training' },
-        { label: 'Reskilling', href: '#training' },
+    Academy: [
+        { label: 'Prompts & Chains', href: '#training' },
+        { label: 'Artifacts & Schema', href: '#training' },
+        { label: 'Skills & Tool Use', href: '#training' },
+        { label: 'Agent State Machines', href: '#training' },
+        { label: 'Team Reskilling', href: '#training' },
+    ],
+    Resources: [
+        { label: 'Battle-Tested Stack', href: '#tools' },
+        { label: 'Engineering Philosophy', href: '#about' },
+        { label: 'Agent Contract (agent.md)', href: `${SITE_URL}/agent.md` },
+        { label: 'Instructions (llms.txt)', href: `${SITE_URL}/llms.txt` },
     ],
     Company: [
-        { label: 'About', href: '#about' },
-        { label: 'Tools', href: '#tools' },
-        { label: 'Contact', href: '#contact' },
+        { label: 'About Us', href: '#about' },
+        { label: 'Client Advisory', href: '#contact' },
+        { label: 'Direct Email', href: `mailto:${CONTACT_EMAIL}` },
     ],
 };
 
 const socials = [
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
+    { icon: Twitter, href: 'https://twitter.com', label: 'Twitter / X' },
     { icon: Github, href: 'https://github.com', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
     { icon: Mail, href: `mailto:${CONTACT_EMAIL}`, label: 'Email' },
 ];
 
 export default function Footer() {
     return (
-        <footer className="relative border-t border-[rgba(28,24,20,0.08)] px-6 pt-16 pb-10 overflow-hidden">
-            {/* Subtle glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[200px] rounded-full bg-amber-200/8 blur-[100px] pointer-events-none" />
-
+        <footer className="relative bg-[#0d0c0a] text-[#faf7f2] border-t border-white/10 pt-16 pb-12 px-4 sm:px-6 overflow-hidden">
             <div className="relative max-w-7xl mx-auto">
-                <div className="grid md:grid-cols-[1.5fr_1fr_1fr_1fr] gap-12 mb-12">
-                    {/* Brand */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] gap-10 mb-16">
+                    {/* Brand Column */}
                     <div>
-                        <a href="#hero" className="flex items-center gap-2.5 mb-5">
-                            <div className="w-9 h-9 rounded-lg border border-amber-700/25 flex items-center justify-center bg-gradient-to-br from-amber-50 to-[#f0ebe1] shadow-md shadow-amber-700/10">
-                                <span className="font-display text-amber-800 text-xl italic leading-none">N</span>
+                        <a href="#hero" className="flex items-center gap-2.5 mb-4 group">
+                            <div className="w-8 h-8 rounded-lg bg-white text-[#12100e] flex items-center justify-center font-serif text-[18px] italic font-semibold">
+                                B
                             </div>
-                            <span className="text-[15px] font-medium tracking-tight text-[#1a1612]">
-                                Nexora<span className="text-amber-700/60"> AI</span>
+                            <span className="text-[17px] font-bold tracking-tight text-white">
+                                Brainorth<span className="font-serif italic font-normal text-[#e85d2f]">.ai</span>
                             </span>
                         </a>
-                        <p className="text-sm text-[#4a4239] leading-relaxed max-w-xs">
-                            AI & Automation consulting. We build autonomous agents, machine learning systems,
-                            and deep learning advisory for forward-thinking organizations.
+
+                        <p className="text-[13.5px] text-white/60 leading-relaxed max-w-xs mb-5">
+                            Autonomous agent swarms, continuous ML pipelines, and deep technical advisory for forward-thinking organizations.
                         </p>
-                        <div className="flex items-center gap-3 mt-6">
-                            {socials.map((social) => (
+
+                        {/* Live status badge */}
+                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[12px] font-mono text-white/70">
+                            <span className="live-dot" />
+                            <span>All agent swarms operational</span>
+                        </div>
+
+                        {/* Social Links */}
+                        <div className="flex items-center gap-2.5 mt-6">
+                            {socials.map((s) => (
                                 <a
-                                    key={social.label}
-                                    href={social.href}
-                                    aria-label={social.label}
-                                    target={social.href.startsWith('http') ? '_blank' : undefined}
-                                    rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                                    className="w-9 h-9 rounded-lg glass-cream flex items-center justify-center text-[#4a4239] hover:text-amber-800 hover:bg-[#f0ebe1]/60 transition-all duration-300"
+                                    key={s.label}
+                                    href={s.href}
+                                    aria-label={s.label}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all"
                                 >
-                                    <social.icon size={16} />
+                                    <s.icon size={15} />
                                 </a>
                             ))}
                         </div>
                     </div>
 
-                    {/* Link columns */}
-                    {Object.entries(footerLinks).map(([category, links]) => (
+                    {/* Navigation Columns */}
+                    {Object.entries(footerNav).map(([category, links]) => (
                         <div key={category}>
-                            <h4 className="text-xs font-medium text-[#6b6052] uppercase tracking-wider mb-4">
+                            <h4 className="text-[11px] font-mono uppercase tracking-wider text-white/40 mb-3.5 font-semibold">
                                 {category}
                             </h4>
-                            <ul className="space-y-3">
+                            <ul className="space-y-2.5">
                                 {links.map((link) => (
                                     <li key={link.label}>
                                         <a
                                             href={link.href}
-                                            className="text-sm text-[#4a4239] hover:text-[#1a1612] transition-colors duration-300"
+                                            className="text-[13px] text-white/70 hover:text-white transition-colors"
                                         >
                                             {link.label}
                                         </a>
@@ -93,21 +100,23 @@ export default function Footer() {
                     ))}
                 </div>
 
-                {/* Bottom bar */}
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-[rgba(28,24,20,0.08)]">
-                    <p className="text-xs text-[#6b6052]">
-                        © 2026 Nexora AI. All rights reserved.
-                    </p>
+                {/* Massive Watermark Word (Antideploy signature touch) */}
+                <div
+                    className="select-none pointer-events-none py-6 font-extrabold tracking-tighter text-white/[0.035] text-[clamp(4.5rem,14vw,12.5rem)] leading-none text-center font-sans overflow-hidden"
+                    aria-hidden
+                >
+                    BRAINORTH
+                </div>
+
+                {/* Bottom Base Bar */}
+                <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-white/50">
+                    <div>
+                        © {new Date().getFullYear()} Brainorth AI. All rights reserved. Built with precision.
+                    </div>
                     <div className="flex items-center gap-6">
-                        <a href="#hero" className="text-xs text-[#6b6052] hover:text-[#4a4239] transition-colors">
-                            Privacy
-                        </a>
-                        <a href="#hero" className="text-xs text-[#6b6052] hover:text-[#4a4239] transition-colors">
-                            Terms
-                        </a>
-                        <a href="#hero" className="text-xs text-[#6b6052] hover:text-[#4a4239] transition-colors">
-                            Security
-                        </a>
+                        <a href="#hero" className="hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="#hero" className="hover:text-white transition-colors">Terms of Service</a>
+                        <a href="#hero" className="hover:text-white transition-colors">Security & Audit</a>
                     </div>
                 </div>
             </div>

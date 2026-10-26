@@ -1,0 +1,16 @@
+# Brainorth AI
+> Custom-tailored autonomous AI agent solutions, production ML systems, and enterprise advisory.
+
+## Overview
+Brainorth builds production-grade intelligent systems for forward-thinking companies. We specialize in autonomous agent swarms, high-throughput machine learning pipelines, and sovereign VPC inference infrastructure.
+
+## Core Capabilities
+- Autonomous AI Agents: Multi-agent state machines, self-healing workflows, human-in-the-loop supervision.
+- Machine Learning Systems: Hybrid vector RAG (pgvector), model distillation (LoRA, quantization), continuous evaluation benches.
+- Deep Advisory & Audits: Architecture reviews, token cost containment, sovereign on-prem deployment.
+- Hands-on Academy: 6 intensive training modules covering prompts, artifacts, tools, collaborative AI, and team reskilling.
+
+## Key Links
+- Main Website: https://brainorth.ai
+- Agent Integration: https://brainorth.ai/agent.md
+- Contact: hello@brainorth.ai

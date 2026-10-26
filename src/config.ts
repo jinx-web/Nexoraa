@@ -1,3 +1,3 @@
-export const CALENDLY_URL = 'https://calendly.com/nexora-ai/intro-call';
-export const CONTACT_EMAIL = 'hello@nexora.ai';
-export const SITE_URL = 'https://nexora.ai';
+export const CALENDLY_URL = 'https://calendly.com/brainorth-ai/intro-call';
+export const CONTACT_EMAIL = 'hello@brainorth.ai';
+export const SITE_URL = 'https://brainorth.ai';

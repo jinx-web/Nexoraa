@@ -1,16 +1,71 @@
 import { useState } from 'react';
-import { MessageSquare, FileCode, Puzzle, Users, Bot, GraduationCap, Plus, Minus, Check, type LucideIcon } from 'lucide-react';
+import {
+    MessageSquare,
+    FileCode,
+    Puzzle,
+    Users,
+    Bot,
+    GraduationCap,
+    Plus,
+    Minus,
+    Check,
+    ArrowUpRight,
+    type LucideIcon,
+} from 'lucide-react';
 import Reveal from '@/components/Reveal';
+import { CALENDLY_URL } from '@/config';
 
-type Module = { icon: LucideIcon; label: string; description: string; topics: string[]; color: string };
+type Module = {
+    icon: LucideIcon;
+    label: string;
+    description: string;
+    topics: string[];
+    tag: string;
+};
 
 const trainingModules: Module[] = [
-    { icon: MessageSquare, label: 'Prompts', description: 'Prompt engineering for real outputs.', topics: ['Structured prompt design patterns', 'Few-shot & chain-of-thought', 'Prompt testing & evaluation', 'Cost-optimized prompting'], color: '#e85d2f' },
-    { icon: FileCode, label: 'Artifacts', description: 'Reusable AI-generated artifacts.', topics: ['Artifact versioning & lifecycle', 'Templating for repeatable outputs', 'Quality control pipelines', 'Integration with content systems'], color: '#12100e' },
-    { icon: Puzzle, label: 'Skills', description: 'Specialized skills for your domain.', topics: ['Domain-specific skill architecture', 'Tool-use & function calling', 'Skill composition & chaining', 'Evaluation & continuous improvement'], color: '#0f766e' },
-    { icon: Users, label: 'Collaborative Projects', description: 'Team AI workflows that actually stick.', topics: ['AI-assisted pair programming', 'Code review with agents', 'Team workflow orchestration', 'Knowledge sharing & docs'], color: '#6d28d9' },
-    { icon: Bot, label: 'Agents', description: 'Design, build, deploy autonomous agents.', topics: ['Agent architecture & state', 'Multi-agent coordination', 'Guardrails & human-in-the-loop', 'Deploy, monitor, observe'], color: '#d4a017' },
-    { icon: GraduationCap, label: 'Reskilling', description: 'Workforce programs for the AI era.', topics: ['Role-specific competency frameworks', 'Hands-on labs & projects', 'Change management & adoption', 'Measuring ROI & progression'], color: '#be185d' },
+    {
+        icon: MessageSquare,
+        label: 'Prompts & Chains',
+        description: 'Advanced reasoning architectures, contextual framing, and multi-turn chain design.',
+        topics: ['System prompt topology & boundary defense', 'Chain-of-thought, self-consistency & tree-of-thought', 'Automated prompt evaluation with benchmark datasets', 'Token optimization & latency pruning'],
+        tag: 'Core',
+    },
+    {
+        icon: FileCode,
+        label: 'Artifacts & Schema',
+        description: 'Generating reliable, production-ready code, schemas, and structured JSON.',
+        topics: ['Constrained decoding with Pydantic and JSON Schema', 'Code generation with automated lint and test loops', 'Deterministic output pipelines for enterprise software', 'Version-controlled prompt & artifact registries'],
+        tag: 'Engineering',
+    },
+    {
+        icon: Puzzle,
+        label: 'Skills & Tool Use',
+        description: 'Building custom agent capabilities and secure Model Context Protocol servers.',
+        topics: ['Tool definition contracts and error recovery', 'MCP (Model Context Protocol) server construction', 'Safe database querying and API synthesis', 'Sandboxed code execution environments'],
+        tag: 'Integration',
+    },
+    {
+        icon: Users,
+        label: 'Collaborative AI Workflows',
+        description: 'Practical human-in-the-loop pairing that multiplies developer velocity.',
+        topics: ['AI-assisted pairing & architecture exploration', 'Automated PR reviews and inline code suggestions', 'Continuous team documentation synthesis', 'Adoption frameworks for senior engineering staff'],
+        tag: 'Culture',
+    },
+    {
+        icon: Bot,
+        label: 'Autonomous Agents',
+        description: 'State-machine orchestration, memory stores, and self-correcting loops.',
+        topics: ['Graph-based agent state machines (LangGraph)', 'Persistent episodic & semantic memory (pgvector)', 'Multi-agent supervisor routing & validation', 'Production observability, traces & telemetry'],
+        tag: 'Swarm',
+    },
+    {
+        icon: GraduationCap,
+        label: 'Team Reskilling',
+        description: 'Transforming traditional software teams into AI-native builders.',
+        topics: ['Role-specific competency maps (Front, Back, Data, Ops)', 'Hands-on hackathons with real production outcomes', 'Risk management, IP privacy & model compliance', 'Executive ROI frameworks and progression metrics'],
+        tag: 'Enterprise',
+    },
 ];
 
 export default function Training() {
@@ -18,80 +73,112 @@ export default function Training() {
     const toggle = (idx: number) => setExpanded(expanded === idx ? -1 : idx);
 
     return (
-        <section id="training" className="relative section-pad px-6 bg-[#fdf8f0] border-t-[2.5px] border-[#12100e]">
+        <section id="training" className="relative py-20 lg:py-28 px-4 sm:px-6 bg-[#faf7f2] border-t border-[rgba(28,20,14,0.08)]">
             <div className="max-w-7xl mx-auto">
-                <div className="grid lg:grid-cols-[0.95fr_1.15fr] gap-10 items-start">
-                    <div className="lg:sticky lg:top-[84px]">
+                <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 items-start">
+                    {/* Left Sticky Column */}
+                    <div className="lg:sticky lg:top-28">
                         <Reveal>
-                            <span className="pill bg-white text-[#12100e]">Training</span>
-                            <h2 className="mt-4 font-display font-extrabold text-display-lg leading-[0.95] text-[#12100e]">
-                                Equip your team with <span className="font-serif italic font-normal text-[#0f766e]">practical</span> AI.
+                            <div className="eyebrow mb-3">
+                                <span className="eyebrow-badge">04</span>
+                                <span>Hands-on Academy</span>
+                            </div>
+
+                            <h2 className="text-[clamp(2.2rem,4.5vw,3.6rem)] font-extrabold tracking-[-0.04em] leading-[0.98] text-[#14110f]">
+                                Equip your team with <span className="headline-accent">practical</span> AI.
                             </h2>
-                            <p className="mt-3 text-[15px] leading-relaxed text-[#3d332b] max-w-[52ch]">
-                                Hands-on programs — from fundamentals to production. Each module expands to the real curriculum.
+
+                            <p className="mt-4 text-[16px] text-[#3e3730] leading-relaxed max-w-lg">
+                                Real engineering labs—not pre-recorded slide decks. We train your developers, data teams, and product managers to build production AI systems.
                             </p>
                         </Reveal>
 
                         <Reveal delay={80}>
-                            <div className="mt-6 grid grid-cols-3 gap-3 max-w-[420px]">
+                            {/* Stats */}
+                            <div className="mt-7 grid grid-cols-3 gap-3 max-w-md">
                                 {[
-                                    { v: '6', l: 'Modules' },
-                                    { v: '100%', l: 'Hands-on' },
-                                    { v: 'Custom', l: 'Curriculum' },
+                                    { v: '6', l: 'Intensive Modules' },
+                                    { v: '100%', l: 'Hands-on Labs' },
+                                    { v: 'Custom', l: 'Client Syllabus' },
                                 ].map((s) => (
-                                    <div key={s.l} className="bg-[#12100e] text-[#fdf8f0] rounded-2xl px-3 py-3 border-[1.5px] border-[#12100e] text-center">
-                                        <div className="font-display font-extrabold text-[20px] leading-none">{s.v}</div>
-                                        <div className="text-[11px] font-bold tracking-[0.08em] uppercase opacity-70 mt-1">{s.l}</div>
+                                    <div key={s.l} className="p-3.5 rounded-2xl bg-white border border-[rgba(28,20,14,0.08)] shadow-sm text-center">
+                                        <div className="text-[22px] font-extrabold text-[#14110f]">{s.v}</div>
+                                        <div className="text-[11px] font-mono uppercase text-[#70665d] tracking-wider mt-0.5">{s.l}</div>
                                     </div>
                                 ))}
                             </div>
                         </Reveal>
 
                         <Reveal delay={140}>
-                            <div className="mt-6 hidden lg:block bg-white border-[2.5px] border-[#12100e] rounded-[18px] overflow-hidden shadow-[6px_6px_0_0_#12100e] rotate-[-0.6deg]">
-                                <img src="https://images.pexels.com/photos/30895543/pexels-photo-30895543.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Abstract" className="w-full h-40 object-cover border-b-[2.5px] border-[#12100e]" loading="lazy" width={600} height={160} />
-                                <div className="p-4">
-                                    <div className="text-[11px] font-extrabold tracking-[0.12em] uppercase text-[#6e6259]">Learning path</div>
-                                    <div className="mt-3 grid grid-cols-4 gap-2">
-                                        {['Understand', 'Build', 'Deploy', 'Measure'].map((step, idx) => (
-                                            <div key={step} className="text-center">
-                                                <div className="w-8 h-8 rounded-full bg-[#12100e] text-white text-[11px] font-bold flex items-center justify-center mx-auto border border-[#12100e]">{idx + 1}</div>
-                                                <div className="text-[11px] font-bold text-[#12100e] mt-1 leading-tight">{step}</div>
-                                            </div>
-                                        ))}
-                                    </div>
+                            <div className="mt-7 p-6 rounded-2xl bg-[#f2ede4] border border-[rgba(28,20,14,0.08)] space-y-4 max-w-md">
+                                <div className="text-[12px] font-mono font-semibold uppercase tracking-wider text-[#70665d]">
+                                    Enterprise Adoption Cycle
                                 </div>
+                                <div className="grid grid-cols-4 gap-2 text-center text-[12px]">
+                                    {['Discover', 'Build', 'Deploy', 'Sovereign'].map((step, idx) => (
+                                        <div key={step} className="p-2 rounded-xl bg-white/90 border border-[rgba(28,20,14,0.06)]">
+                                            <div className="font-mono text-[#e85d2f] font-bold text-[11px]">0{idx + 1}</div>
+                                            <div className="font-semibold text-[#14110f] text-[11.5px] mt-0.5">{step}</div>
+                                        </div>
+                                    ))}
+                                </div>
+                                <a
+                                    href={CALENDLY_URL}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="link-arrow text-[13px] font-semibold pt-1"
+                                >
+                                    Book a training workshop consultation <ArrowUpRight size={14} />
+                                </a>
                             </div>
                         </Reveal>
                     </div>
 
-                    <div className="space-y-3">
+                    {/* Right Accordion List */}
+                    <div className="space-y-3.5">
                         {trainingModules.map((module, i) => {
                             const isOpen = expanded === i;
                             return (
-                                <Reveal key={module.label} delay={i * 60}>
-                                    <div className={`bg-white border-[2.5px] border-[#12100e] rounded-[18px] overflow-hidden shadow-[4px_4px_0_0_#12100e] transition-transform duration-200 ${isOpen ? 'rotate-[-0.2deg] shadow-[6px_6px_0_0_#12100e]' : 'hover:rotate-[-0.2deg]'}`}>
-                                        <button onClick={() => toggle(i)} aria-expanded={isOpen} className="w-full flex items-center gap-3 p-4 text-left">
-                                            <span className="w-11 h-11 rounded-xl border-[1.5px] border-[#12100e] flex items-center justify-center flex-shrink-0 shadow-[2px_2px_0_0_#12100e]" style={{ background: module.color, color: module.color === '#d4a017' ? '#12100e' : '#fff' }}>
-                                                <module.icon size={18} strokeWidth={1.9} />
-                                            </span>
-                                            <span className="flex-1 min-w-0">
-                                                <span className="block text-[15px] font-extrabold tracking-[-0.02em] text-[#12100e] leading-none">{module.label}</span>
-                                                <span className="block text-[12px] text-[#6e6259] mt-1 truncate">{module.description}</span>
-                                            </span>
-                                            <span className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 border-[1.5px] transition-colors ${isOpen ? 'bg-[#12100e] text-white border-[#12100e]' : 'bg-white text-[#12100e] border-[#12100e]'}`}>
+                                <Reveal key={module.label} delay={i * 50}>
+                                    <div
+                                        className={`rounded-2xl transition-all duration-300 border ${
+                                            isOpen
+                                                ? 'bg-white border-[rgba(28,20,14,0.12)] shadow-[0_8px_24px_-8px_rgba(20,17,15,0.12)]'
+                                                : 'bg-white/80 border-[rgba(28,20,14,0.06)] hover:bg-white hover:border-[rgba(28,20,14,0.1)]'
+                                        }`}
+                                    >
+                                        <button
+                                            type="button"
+                                            onClick={() => toggle(i)}
+                                            className="w-full flex items-center justify-between gap-4 p-5 text-left"
+                                        >
+                                            <div className="flex items-center gap-3.5">
+                                                <div className="w-10 h-10 rounded-xl bg-[#faf7f2] border border-[rgba(28,20,14,0.08)] flex items-center justify-center text-[#e85d2f] flex-shrink-0">
+                                                    <module.icon size={19} />
+                                                </div>
+                                                <div>
+                                                    <div className="flex items-center gap-2">
+                                                        <span className="text-[16px] font-bold text-[#14110f]">{module.label}</span>
+                                                        <span className="text-[10.5px] font-mono font-medium text-[#70665d] bg-[#faf7f2] px-2 py-0.5 rounded-full border border-[rgba(28,20,14,0.06)]">
+                                                            {module.tag}
+                                                        </span>
+                                                    </div>
+                                                    <p className="text-[13px] text-[#70665d] mt-0.5 line-clamp-1">{module.description}</p>
+                                                </div>
+                                            </div>
+
+                                            <div className="w-7 h-7 rounded-full bg-[#faf7f2] border border-[rgba(28,20,14,0.08)] flex items-center justify-center text-[#70665d] flex-shrink-0">
                                                 {isOpen ? <Minus size={13} strokeWidth={2.5} /> : <Plus size={13} strokeWidth={2.5} />}
-                                            </span>
+                                            </div>
                                         </button>
+
                                         {isOpen && (
-                                            <div className="px-4 pb-4 animate-expand">
-                                                <div className="ml-[56px] border-l-[2px] border-dashed border-[#12100e]/15 pl-4 space-y-2.5 pt-1">
-                                                    {module.topics.map((topic) => (
-                                                        <div key={topic} className="flex items-start gap-2.5">
-                                                            <span className="mt-0.5 w-5 h-5 rounded-full bg-[#12100e] text-white flex items-center justify-center flex-shrink-0">
-                                                                <Check size={10} strokeWidth={2.7} />
-                                                            </span>
-                                                            <span className="text-[13px] leading-snug text-[#3d332b]">{topic}</span>
+                                            <div className="px-5 pb-5 pt-1 border-t border-[rgba(28,20,14,0.06)] animate-fade-in">
+                                                <div className="mt-3 grid sm:grid-cols-2 gap-2.5">
+                                                    {module.topics.map((t) => (
+                                                        <div key={t} className="flex items-start gap-2 text-[12.5px] text-[#3e3730]">
+                                                            <Check size={13} className="text-[#e85d2f] flex-shrink-0 mt-0.5" />
+                                                            <span>{t}</span>
                                                         </div>
                                                     ))}
                                                 </div>
